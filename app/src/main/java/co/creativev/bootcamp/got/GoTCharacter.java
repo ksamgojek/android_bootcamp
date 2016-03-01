@@ -30,6 +30,42 @@ public class GoTCharacter implements Parcelable, BaseColumns {
         this(0, firstName, lastName, thumbUrl, fullUrl, alive, house, houseResId, description);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GoTCharacter that = (GoTCharacter) o;
+
+        if (id != that.id) return false;
+        if (alive != that.alive) return false;
+        if (houseResId != that.houseResId) return false;
+        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null)
+            return false;
+        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null)
+            return false;
+        if (thumbUrl != null ? !thumbUrl.equals(that.thumbUrl) : that.thumbUrl != null)
+            return false;
+        if (fullUrl != null ? !fullUrl.equals(that.fullUrl) : that.fullUrl != null) return false;
+        if (house != null ? !house.equals(that.house) : that.house != null) return false;
+        return !(description != null ? !description.equals(that.description) : that.description != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (thumbUrl != null ? thumbUrl.hashCode() : 0);
+        result = 31 * result + (alive ? 1 : 0);
+        result = 31 * result + (fullUrl != null ? fullUrl.hashCode() : 0);
+        result = 31 * result + houseResId;
+        result = 31 * result + (house != null ? house.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        return result;
+    }
+
     public GoTCharacter(int id, String firstName, String lastName, String thumbUrl, String fullUrl, boolean alive, String house, int houseResId, String description) {
         this.id = id;
         this.firstName = firstName;
